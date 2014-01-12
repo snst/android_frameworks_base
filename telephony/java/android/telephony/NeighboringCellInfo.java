@@ -92,7 +92,6 @@ public class NeighboringCellInfo implements Parcelable
      * the radio network type at that moment. Its constructor needs radio network
      * type.
      *
-     * @deprecated by {@link #NeighboringCellInfo(int, String, int)}
      */
     @Deprecated
     public NeighboringCellInfo(int rssi, int cid) {
