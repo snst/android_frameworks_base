@@ -1282,6 +1282,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             mHasSystemNavBar = false;
             mNavigationBarCanMove = false;
         }
+        
+        mHasSystemNavBar = true;
+        mNavigationBarCanMove = false;
 
         if (!mHasSystemNavBar) {
             mHasNavigationBar = mContext.getResources().getBoolean(
