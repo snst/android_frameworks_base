@@ -2170,6 +2170,25 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
             WindowManager.LayoutParams.TYPE_SYSTEM_ERROR,
         };
+        
+        
+  //TPT
+    void showToast(final String i) {
+        mHandler.post(new Runnable() {
+            @Override
+            public void run() {
+            CharSequence text = "Error";
+
+            text = i;
+
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(mContext, text, duration);
+            toast.show();
+            }
+        });
+    }
+  //TPT END
 
     /** {@inheritDoc} */
     @Override
@@ -2464,7 +2483,39 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     mHandler.postDelayed(mBackLongPress, mBackKillTimeout);
                 }
             }
-        }
+        } else if (keyCode == KeyEvent.KEYCODE_AUTO_ROTATION && down) { //TPT start
+            int ret = Settings.System.getInt(mContext.getContentResolver(), 
+                Settings.System.ACCELEROMETER_ROTATION, 0);
+
+            try {
+                if(ret == 0){
+                    mWindowManager.thawRotation();
+                    showToast("Auto Rotation Enabled");
+                } else {
+                    mWindowManager.freezeRotation(-1);
+                    showToast("Auto Rotation Disabled");
+                }
+            } catch (RemoteException exc) {
+                showToast("Auto Rotation Toggle Error");
+                Log.w(TAG, "Unable to save auto-rotate setting");
+            }
+        } else if (keyCode == KeyEvent.KEYCODE_TOUCH_DISABLER && down) {
+            if(SystemProperties.getInt("touch.enable", 1) == 1) {
+                try {
+                    Runtime.getRuntime().exec("tpt-touch-enabler 0");
+                } catch(Exception d) {
+                    Log.w(TAG, "Unable to disable Touch: "+d.getMessage());
+                }
+                showToast("Touchscreen Disabled");
+            } else {
+                try {
+                    Runtime.getRuntime().exec("tpt-touch-enabler 1");
+                } catch(Exception d) {
+                    Log.w(TAG, "Unable to enable Touch: "+d.getMessage());
+                }
+                showToast("Touchscreen Enabled");
+            }
+        }//TPT End
 
         // Shortcuts are invoked through Search+key, so intercept those here
         // Any printing key that is chorded with Search should be consumed
