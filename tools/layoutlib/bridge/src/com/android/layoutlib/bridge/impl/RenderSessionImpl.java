@@ -1132,7 +1132,7 @@ public class RenderSessionImpl extends RenderAction<SessionParams> {
 
                 if (shortSizeDp < 600) {
                     // 0-599dp: "phone" UI with bar on the side
-                    barOnBottom = false;
+                    barOnBottom = true;
                 } else {
                     // 600+dp: "tablet" UI with bar on the bottom
                     barOnBottom = true;
