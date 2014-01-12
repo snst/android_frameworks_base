@@ -624,7 +624,12 @@ public class KeyEvent extends InputEvent implements Parcelable {
      * Launches the global assist activity.  Not delivered to applications. */
     public static final int KEYCODE_ASSIST          = 219;
 
-    private static final int LAST_KEYCODE           = KEYCODE_ASSIST;
+    //TPT START
+    public static final int KEYCODE_AUTO_ROTATION   = 227;
+    public static final int KEYCODE_TOUCH_DISABLER  = 228;
+ 
+    private static final int LAST_KEYCODE           = KEYCODE_TOUCH_DISABLER;
+    //TPT END
 
     // NOTE: If you add a new keycode here you must also add it to:
     //  isSystem()
@@ -866,6 +871,10 @@ public class KeyEvent extends InputEvent implements Parcelable {
         names.append(KEYCODE_RO, "KEYCODE_RO");
         names.append(KEYCODE_KANA, "KEYCODE_KANA");
         names.append(KEYCODE_ASSIST, "KEYCODE_ASSIST");
+        //TPT start
+        names.append(KEYCODE_AUTO_ROTATION, "KEYCODE_AUTO_ROTATION");
+        names.append(KEYCODE_TOUCH_DISABLER, "KEYCODE_TOUCH_DISABLER");
+        //TPT end        
     };
 
     // Symbolic names of all metakeys in bit order from least significant to most significant.
