@@ -1541,6 +1541,10 @@
         <enum name="KEYCODE_YEN" value="216" />
         <enum name="KEYCODE_RO" value="217" />
         <enum name="KEYCODE_KANA" value="218" />
+        <!--TPT start-->
+        <enum name="KEYCODE_AUTO_ROTATION" value="227" />
+        <enum name="KEYCODE_TOUCH_DISABLER" value="228" />
+        <!--TPT end-->        
     </attr>
 
     <!-- ***************************************************************** -->
